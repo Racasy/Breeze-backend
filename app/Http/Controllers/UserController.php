@@ -14,6 +14,7 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
+<<<<<<< HEAD
         return response()->json(['name' => $request->user()->name,
                                  'email' => $request->user()->email, 
                                  'company_id' => $request->user()->company_id, 
@@ -25,5 +26,8 @@ class UserController extends Controller
         $user->load('company:id,company_name');
     
         return response()->json($user);
+=======
+        return response()->json(['name' => $request->user()->name]);
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
     }
 }

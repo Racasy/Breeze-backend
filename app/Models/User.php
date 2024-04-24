@@ -12,18 +12,24 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+<<<<<<< HEAD
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
 
+=======
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+<<<<<<< HEAD
         'company_id',
+=======
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
         'name',
         'email',
         'password',

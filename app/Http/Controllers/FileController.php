@@ -19,6 +19,7 @@ class FileController extends Controller
 
         // Validate that its a file with req type max 50mb
         $request->validate([
+<<<<<<< HEAD
             'file' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf,doc,docm,docx,odt,txt,csv,xls,xlsm,xlsm,xml|max:51200',
             'comment' => 'nullable|string'
         ]);
@@ -26,6 +27,15 @@ class FileController extends Controller
 
         if($request->file()){
             $fileUpload = new FileUpload;
+=======
+            'file' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:51200',
+            'comment' => 'nullable|string'
+        ]);
+
+        $fileUpload = new FileUpload;
+
+        if($request->file()){
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
             $file_name = time().'_'.$request->file->getClientOriginalName();
             $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
             $comment = $request->input('comment', '');
@@ -35,7 +45,10 @@ class FileController extends Controller
 
             Log::info("File size is: {$file_size}");
 
+<<<<<<< HEAD
             $fileUpload->user_id = $request->user()->id;
+=======
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
             $fileUpload->name = time().'_'.$request->file->getClientOriginalName();
             $fileUpload->path = $file_path;
             $fileUpload->comment = $request->input('comment', '');
@@ -47,6 +60,7 @@ class FileController extends Controller
     }
     
     public function getAllFiles(Request $request){
+<<<<<<< HEAD
         $files = FileUpload::with('user')->get()->map(function ($file) {
             return [
                 'id' => $file->id,
@@ -57,6 +71,9 @@ class FileController extends Controller
                 'uploaded_by' => $file->user ? $file->user->name : 'Unknown',
             ];
         });
+=======
+        $files = FileUpload::all();
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
         return response()->json($files);
     }
 
@@ -151,6 +168,7 @@ class FileController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function updateComment(Request $request, $id)
     {
         $request->validate([
@@ -164,5 +182,10 @@ class FileController extends Controller
         return response()->json(['success' => 'Comment updated successfully.', 'comment' => $fileUpload->comment]);
     }
     
+=======
+    //public function updateFile($id) {
+
+    //}
+>>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
     
 }
