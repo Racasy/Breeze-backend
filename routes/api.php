@@ -29,7 +29,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // File endpoints
 Route::post('/upload-file', [FileController::class, 'upload'])->middleware('auth')->name('upload');
-Route::get('/get-files', [FileController::class, 'getAllFiles'])->name('getAllFiles');
+Route::get('/get-files', [FileController::class, 'getAllFiles'])->middleware('auth')->name('getAllFiles');
+Route::get('/get-files-admin', [FileController::class, 'JustGetAllFiles'])->middleware('auth')->name('JustGetAllFiles');
 Route::delete('/delete-file/{id}', [FileController::class, 'deleteFile'])->middleware('auth')->name('deleteFile');
 Route::get('/download-file/{id}', [FileController::class, 'downloadFile'])->middleware('auth')->name('downloadFile');
 Route::get('/view-file/{id}', [FileController::class, 'viewFile'])->middleware('auth')->name('viewFile');

@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function getUserData() {
         $user = auth()->user();
-        $user->load('company:id,company_name');
+        $user->load('company:id,company_name,company_type,address,phone_number');
     
         return response()->json($user);
     }

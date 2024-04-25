@@ -47,7 +47,18 @@ class FileController extends Controller
     }
     
     public function getAllFiles(Request $request){
-        $files = FileUpload::with('user')->get()->map(function ($file) {
+
+        $userCompanyId = $request->user()->company_id;
+
+        Log::info("The comment is: {$userCompanyId}");
+
+        if (!$request->user()) {
+            return response()->json(['error' => 'User not authenticated'], 401); 
+        }
+
+        $files = FileUpload::whereHas('user', function ($query) use ($userCompanyId) {
+            $query->where('company_id', $userCompanyId);
+        })->with('user')->get()->map(function ($file) {
             return [
                 'id' => $file->id,
                 'name' => $file->name,
@@ -57,6 +68,34 @@ class FileController extends Controller
                 'uploaded_by' => $file->user ? $file->user->name : 'Unknown',
             ];
         });
+    
+        return response()->json($files);
+    }
+    
+
+    public function JustGetAllFiles(Request $request){
+
+        $companyID = $request->query('company_id');
+
+        if ($companyID) {
+            $files = FileUpload::whereHas('user', function ($query) use ($companyID) {
+                $query->where('company_id', $companyID);
+            })->with('user')->get();
+        } else {
+            $files = FileUpload::with('user')->get();
+        }
+
+        $files = $files->map(function ($file) {
+            return [
+                'id' => $file->id,
+                'name' => $file->name,
+                'path' => $file->path,
+                'comment' => $file->comment,
+                'size' => $file->size,
+                'uploaded_by' => $file->user ? $file->user->name : 'Unknown',
+            ];
+        });
+
         return response()->json($files);
     }
 
