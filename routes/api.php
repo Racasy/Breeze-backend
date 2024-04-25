@@ -30,26 +30,16 @@ Route::post('/login', [AuthController::class, 'login']);
 // File endpoints
 Route::post('/upload-file', [FileController::class, 'upload'])->middleware('auth')->name('upload');
 Route::get('/get-files', [FileController::class, 'getAllFiles'])->name('getAllFiles');
-<<<<<<< HEAD
 Route::delete('/delete-file/{id}', [FileController::class, 'deleteFile'])->middleware('auth')->name('deleteFile');
 Route::get('/download-file/{id}', [FileController::class, 'downloadFile'])->middleware('auth')->name('downloadFile');
 Route::get('/view-file/{id}', [FileController::class, 'viewFile'])->middleware('auth')->name('viewFile');
 Route::put('/update-comment/{id}', [FileController::class, 'updateComment'])->name('updateComment');
 
-=======
-Route::delete('/delete-file/{id}', [FileController::class, 'deleteFile'])->name('deleteFile');
-Route::get('/download-file/{id}', [FileController::class, 'downloadFile'])->name('downloadFile');
-Route::get('/view-file/{id}', [FileController::class, 'viewFile'])->name('viewFile');
->>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
 // Make Route::update('/update-file/{id}', [FileController::class, 'updateFile'])->name('updateFile');
 
 // Mail endpoints
 //Route::get('/send-email', [MailController::class, 'sendEmail'])->name('sendEmail');
 
 
-<<<<<<< HEAD
 Route::middleware('auth:sanctum')->get('/user', [UserController::class,'getUserData']);
 Route::put('/loaduser', [UserController::class, 'getUserData'])->name('updateComment');
-=======
-Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'show']);
->>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818

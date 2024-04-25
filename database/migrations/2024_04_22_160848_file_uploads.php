@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('file_uploads', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
             $table->unsignedBigInteger('user_id')->nullable();
-=======
->>>>>>> ed3fe74c0edc0b9289cfd240b85781e01a2ec818
             $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->string('comment')->nullable();
