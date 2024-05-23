@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /*public function up()
     {
         Schema::table('file_uploads', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable()->after('id');
@@ -20,9 +20,9 @@ return new class extends Migration
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
         });
-    }
-    /*to fix do this on startup:
-        public function up()
+    }*/
+    //to fix do this on startup:
+    public function up()
     {
         Schema::table('file_uploads', function (Blueprint $table) {
             // Check if the column does not already exist before adding it
@@ -43,5 +43,5 @@ return new class extends Migration
                 $table->dropColumn('user_id');
             }
         });
-    }*/
+    }
 };

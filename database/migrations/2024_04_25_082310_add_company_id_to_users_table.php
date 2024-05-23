@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /*public function up()
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('company_id')->nullable()->after('id');
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->dropForeign(['company_id']);
             $table->dropColumn('company_id');
         });
-    }
-    /*to fix code do this on startup:
+    }*/
+    //to fix code do this on startup:
             public function up()
         {
             Schema::table('users', function (Blueprint $table) {
@@ -40,7 +40,7 @@ return new class extends Migration
                     $table->dropColumn('company_id');
                 }
             });
-        }*/
+        }
 
 };
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,4 @@ Route::put('/update-comment/{id}', [FileController::class, 'updateComment'])->na
 
 Route::middleware('auth:sanctum')->get('/user', [UserController::class,'getUserData']);
 Route::put('/loaduser', [UserController::class, 'getUserData'])->name('updateComment');
+Route::get('/companies', [CompanyController::class, 'index']);

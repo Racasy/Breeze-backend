@@ -14,12 +14,21 @@ class Company extends Model
     protected $fillable = [
         'company_name',
         'company_type',
-        'address',
-        'phone_number',
+        'cContactID'
     ];
 
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    /*public function addresses()
+    {
+        return $this->hasMany(CompanyAddress::class, 'CompanyID');
+    }*/
+
+    public function contactInfo()
+    {
+        return $this->hasMany(CompanyContactInfo::class, 'CompanyID');
     }
 }
