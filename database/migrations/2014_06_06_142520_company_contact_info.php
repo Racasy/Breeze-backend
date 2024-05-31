@@ -9,10 +9,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('company_contact_info', function (Blueprint $table) {
-            $table->id('id'); // Changed column name to 'id' for consistency
+            $table->id('cContactID');
+            $table->unsignedBigInteger('company_id');
             $table->string('emailAddress');
             $table->string('phoneNumber');
             $table->string('address')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }

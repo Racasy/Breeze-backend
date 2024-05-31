@@ -12,4 +12,11 @@ class CompanyController extends Controller
         $companies = Company::all();
         return response()->json($companies);
     }
+
+    public function getWithAddress()
+    {
+        $companies = Company::with('contactInfo')->get();
+
+        return response()->json($companies);
+    }
 }

@@ -29,6 +29,6 @@ class Company extends Model
 
     public function contactInfo()
     {
-        return $this->hasMany(CompanyContactInfo::class, 'CompanyID');
+        return $this->hasMany(CompanyContactInfo::class, 'company_id');
     }
 }

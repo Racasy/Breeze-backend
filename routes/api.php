@@ -24,14 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Auth endpoints
-//Auth::routes(['verify' => true]);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 // File endpoints
 Route::post('/upload-file', [FileController::class, 'upload'])->middleware('auth')->name('upload');
 Route::get('/get-files', [FileController::class, 'getAllFiles'])->middleware('auth')->name('getAllFiles');
-Route::get('/get-files-admin', [FileController::class, 'JustGetAllFiles'])->middleware('auth')->name('JustGetAllFiles');
+Route::get('/get-files-admin', [FileController::class, 'JustGetAllFiles'])/*->middleware('auth')*/->name('JustGetAllFiles');
 Route::delete('/delete-file/{id}', [FileController::class, 'deleteFile'])->middleware('auth')->name('deleteFile');
 Route::get('/download-file/{id}', [FileController::class, 'downloadFile'])->middleware('auth')->name('downloadFile');
 Route::get('/view-file/{id}', [FileController::class, 'viewFile'])->middleware('auth')->name('viewFile');
@@ -45,4 +44,7 @@ Route::put('/update-comment/{id}', [FileController::class, 'updateComment'])->na
 
 Route::middleware('auth:sanctum')->get('/user', [UserController::class,'getUserData']);
 Route::put('/loaduser', [UserController::class, 'getUserData'])->name('updateComment');
+
+// Company endpoints
 Route::get('/companies', [CompanyController::class, 'index']);
+Route::get('/companies-with-info', [CompanyController::class, 'getWithAddress']);

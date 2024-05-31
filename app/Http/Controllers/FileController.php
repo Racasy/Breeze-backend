@@ -73,16 +73,16 @@ class FileController extends Controller
     }
     
 
-    public function JustGetAllFiles(Request $request){
-
+    public function JustGetAllFiles(Request $request)
+    {
         $companyID = $request->query('company_id');
-
+    
         if ($companyID) {
             $files = FileUpload::whereHas('user', function ($query) use ($companyID) {
                 $query->where('company_id', $companyID);
-            })->with('user')->get();
+            })->with(['user.company'])->get();
         } else {
-            $files = FileUpload::with('user')->get();
+            $files = FileUpload::with(['user.company'])->get();
         }
 
         $files = $files->map(function ($file) {
@@ -93,9 +93,10 @@ class FileController extends Controller
                 'comment' => $file->comment,
                 'size' => $file->size,
                 'uploaded_by' => $file->user ? $file->user->name : 'Unknown',
+                'company' => $file->user && $file->user->company ? $file->user->company->company_name : 'No company',
             ];
         });
-
+    
         return response()->json($files);
     }
 
